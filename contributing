@@ -1,0 +1,163 @@
+Stroke Management Software MVP - Project Development Standards
+Purpose
+This document outlines the standards and guidelines for the Stroke Management Software MVP to ensure consistent code quality, efficient collaboration, and streamlined development across frontend, backend, and AI teams within the 7-day sprint.
+1. General Guidelines
+
+Communication: Use daily stand-ups (15 minutes) to report progress, blockers, and next steps.
+Project Management: Track tasks on the Project Management Board. Update task statuses daily.
+Documentation: Document all code (functions, components, APIs) using inline comments and update the README for major changes.
+Time Management: Prioritize high-priority tasks to meet the 7-day deadline. Escalate blockers immediately.
+
+2. Version Control (Git)
+
+Repository: Use a single Git repository (stroke-management-mvp) with branches for features, bug fixes, and hotfixes.
+Branch Naming:
+Feature: feature/<task-id>-<short-description> (e.g., feature/T1-dashboard-ui)
+Bug Fix: bug/<task-id>-<short-description> (e.g., bug/T5-api-error)
+Hotfix: hotfix/<short-description> (e.g., hotfix/login-failure)
+
+
+Commit Messages:
+Format: [<task-id>] <action>: <description> (e.g., [T1] Add: Dashboard component layout)
+Keep messages concise and descriptive.
+
+
+Workflow:
+Pull the latest main branch daily: git pull origin main.
+Create a feature branch: git checkout -b feature/T1-dashboard-ui.
+Commit changes frequently (at least every 2 hours).
+Push to remote: git push origin feature/T1-dashboard-ui.
+Submit pull requests (PRs) for review. Include task ID and description in PR.
+Require at least one approval before merging.
+
+
+Merge Strategy: Use squash and merge to keep the main branch history clean.
+
+3. Coding Standards
+3.1 Frontend (React)
+
+Framework: React with TypeScript (optional for MVP speed).
+File Structure:
+Components: client/src/components/<ComponentName>.js (e.g., Dashboard.js).
+Pages: client/src/pages/<PageName>.js (e.g., Home.js).
+Services: client/src/services/api.js for API calls.
+
+
+Naming Conventions:
+Components: PascalCase (e.g., PatientForm).
+Files: camelCase (e.g., patientForm.js).
+Variables/Functions: camelCase (e.g., fetchPatientData).
+
+
+Styling: Use Tailwind CSS. Avoid inline styles unless necessary.
+Code Quality:
+Use ESLint with Airbnb rules (npx eslint --init).
+Break components into reusable pieces (e.g., <Button />, <Input />).
+Use functional components with hooks (no class components).
+Handle errors in API calls with try-catch and display user-friendly messages.
+
+
+Testing: Write unit tests for critical components (e.g., PatientForm) using Jest/React Testing Library if time permits.
+
+3.2 Backend (NestJS)
+
+Framework: NestJS with TypeScript.
+File Structure:
+Modules: server/src/<module>/<module>.{controller,service,entity,module}.ts (e.g., patients.controller.ts).
+Config: server/src/config/database.config.ts.
+
+
+Naming Conventions:
+Classes: PascalCase (e.g., PatientsService).
+Files: kebab-case (e.g., patients.service.ts).
+Variables/Functions: camelCase (e.g., createPatient).
+
+
+API Standards:
+Use RESTful conventions (e.g., GET /patients, POST /patients).
+Return consistent JSON responses: { data: {}, error: null } or { data: null, error: "message" }.
+Use HTTP status codes (e.g., 200 for success, 400 for bad request, 401 for unauthorized).
+
+
+Database:
+Use TypeORM with PostgreSQL.
+Name tables in snake_case (e.g., patient_data, stroke_assessments).
+Include created_at and updated_at timestamps in all tables.
+
+
+Code Quality:
+Use NestJS CLI to generate modules (nest g module <name>).
+Validate inputs using @nestjs/class-validator.
+Handle errors with custom exceptions (e.g., throw new BadRequestException('Invalid data')).
+Use environment variables for sensitive data (@nestjs/config).
+
+
+Testing: Write unit tests for services (e.g., PatientsService) using Jest if time permits.
+
+3.3 AI Model (Python)
+
+Framework: Python with scikit-learn for ML and FastAPI for serving predictions.
+File Structure:
+Scripts: ai-model/src/<script>.py (e.g., train.py, predict.py).
+Models: ai-model/models/stroke_risk_model.pkl.
+
+
+Naming Conventions:
+Files: snake_case (e.g., preprocess.py).
+Variables/Functions: snake_case (e.g., predict_risk).
+Classes: CamelCase (e.g., StrokeRiskModel).
+
+
+Code Quality:
+Use Black for code formatting (black .).
+Document functions with docstrings following Google style.
+Validate input data before prediction (e.g., check for missing values).
+Log errors and predictions using logging module.
+
+
+API Standards:
+Expose a single endpoint: POST /predict accepting JSON (e.g., { "age": 65, "blood_pressure": 140 }).
+Return JSON: { "risk_score": 0.75, "error": null }.
+
+
+Testing: Write unit tests for prediction logic using pytest if time permits.
+
+4. Environment Variables
+
+Store sensitive data (e.g., API keys, DB credentials) in .env files.
+Use .env.example in each directory (client, server, ai-model) to list required variables.
+Example:
+Frontend: REACT_APP_API_URL=http://localhost:3000
+Backend: DATABASE_URL=postgres://user:pass@localhost:5432/stroke_db, JWT_SECRET=your_secret
+AI: MODEL_PATH=./models/stroke_risk_model.pkl
+
+
+
+5. Testing and Deployment
+
+Testing:
+Test critical paths manually (e.g., login, patient data entry, AI prediction).
+Automate tests for APIs and components if time allows.
+
+
+Deployment:
+Use Docker for consistent environments (docker-compose up).
+Deploy to a cloud provider (e.g., AWS, Heroku) post-MVP if required.
+
+
+CI/CD: Set up GitHub Actions for linting and testing post-MVP.
+
+6. Collaboration Tools
+
+Task Management: Use the Project Management Board (e.g., Trello, Jira).
+Code Review: Use GitHub PRs with at least one reviewer.
+Documentation: Update this document and README for new standards or tools.
+Communication: Slack/Teams for real-time chat; email for formal updates.
+
+7. Troubleshooting
+
+Frontend Issues: Check console logs and network tab in browser dev tools.
+Backend Issues: Check NestJS logs (npm run start:dev) and database connectivity.
+AI Issues: Verify model input format and FastAPI logs.
+Escalation: Raise issues in daily stand-ups or Slack/Teams.
+
