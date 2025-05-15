@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckRiskFactor from './pages/checkRiskFactor';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/StrokePrevention';
 
 const App = () => {
   return (
