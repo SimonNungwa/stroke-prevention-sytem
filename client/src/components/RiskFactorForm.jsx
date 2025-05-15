@@ -22,7 +22,7 @@ const RiskFactorForm = () => {
         {
             id: "gender",
             title: "What is your gender?",
-            options: ["Male", "Female", "Other"],
+            options: ["Male", "Female"],
             type: "radio"
         },
         {

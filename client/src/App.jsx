@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckRiskFactor from './pages/checkRiskFactor';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/StrokePrevention';
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/checkRiskFactor" element={<CheckRiskFactor />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          
           {/* <Route path="/Search" element={<Search />} />
                 <Route path="/Saved" element={<Saved />} />
                 <Route path="/Account" element={<Account />} />

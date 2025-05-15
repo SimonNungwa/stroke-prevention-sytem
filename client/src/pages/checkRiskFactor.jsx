@@ -11,7 +11,13 @@ const CheckRiskFactor = () => {
             <main className="container mx-auto px-4 py-6 sm:py-8">
                 <div className="max-w-4xl mx-auto">
                     <br />
-                    <div className="mb-6 sm:mb-8">
+                    <div className="hidden lg:block mb-6 sm:mb-8 ml-30 ">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Stroke Risk Assessment</h1>
+                        <p className="text-gray-600 mt-2 text-sm sm:text-base">
+                            Please provide your information to evaluate stroke risk factors.
+                        </p>
+                    </div>
+                    <div className="lg:hidden mb-6 sm:mb-8 ">
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Stroke Risk Assessment</h1>
                         <p className="text-gray-600 mt-2 text-sm sm:text-base">
                             Please provide your information to evaluate stroke risk factors.
